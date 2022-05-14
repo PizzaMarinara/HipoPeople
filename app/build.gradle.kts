@@ -85,6 +85,7 @@ dependencies {
 
     // Hilt
     implementation(Libs.Hilt.android)
+    implementation(Libs.Hilt.compose)
     kapt(Libs.Hilt.compiler)
 
     // Retrofit

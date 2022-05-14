@@ -43,10 +43,12 @@ object Libs {
 
         object Compose {
             const val version = "1.2.0-beta01"
+            private const val material3Version = "1.0.0-alpha11"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:$version"
             const val material = "androidx.compose.material:material:$version"
+            const val material3 = "androidx.compose.material3:material3:$material3Version"
             const val foundation = "androidx.compose.foundation:foundation:$version"
             const val layout = "androidx.compose.foundation:foundation-layout:$version"
             const val tooling = "androidx.compose.ui:ui-tooling:$version"
@@ -93,10 +95,12 @@ object Libs {
 
     object Hilt {
         private const val version = "2.42"
+        private const val composeNavigationVersion = "1.0.0"
 
         const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
         const val android = "com.google.dagger:hilt-android:$version"
         const val compiler = "com.google.dagger:hilt-compiler:$version"
+        const val compose = "androidx.hilt:hilt-navigation-compose:$composeNavigationVersion"
         const val testing = "com.google.dagger:hilt-android-testing:$version"
     }
 
