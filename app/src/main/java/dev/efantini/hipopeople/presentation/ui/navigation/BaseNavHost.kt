@@ -7,18 +7,18 @@ import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun BaseNavHost(
-    startDestination: String = NavigationItem.UsersList.route
+    startDestination: String = NavigationItem.MembersList.route
 ) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = startDestination) {
-        composable(NavigationItem.UsersList.route) {
+        composable(NavigationItem.MembersList.route) {
             // UsersListContent(navController)
         }
-        composable(NavigationItem.AddUser.route) {
+        composable(NavigationItem.AddMember.route) {
             // AddUserContent(navController)
         }
-        composable(NavigationItem.UserDetail.route) { backStack ->
-            // UserDetailContent(navController, backStack.arguments?.getString("userId"))
+        composable(NavigationItem.MemberDetail.route) { backStack ->
+            // UserDetailContent(navController, backStack.arguments?.getString("memberId"))
         }
     }
 }

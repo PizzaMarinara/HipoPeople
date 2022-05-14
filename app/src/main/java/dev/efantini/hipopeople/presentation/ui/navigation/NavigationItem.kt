@@ -4,15 +4,15 @@ sealed class NavigationItem(
     val route: String,
     val fullRoute: String
 ) {
-    object UsersList : NavigationItem(
-        "userslist", "userslist"
+    object MembersList : NavigationItem(
+        "memberslist", "memberslist"
     )
 
-    object AddUser : NavigationItem(
-        "adduser", "adduser"
+    object AddMember : NavigationItem(
+        "addmember", "addmember"
     )
 
-    object UserDetail : NavigationItem(
-        "userdetail", "userdetail/{userId}"
+    object MemberDetail : NavigationItem(
+        "memberdetail", "memberdetail/{memberId}"
     )
 }
