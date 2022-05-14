@@ -1,4 +1,4 @@
-package dev.efantini.hipopeople.presentation.ui.elements
+package dev.efantini.hipopeople.presentation.ui
 
 import androidx.compose.runtime.Composable
 import dev.efantini.hipopeople.presentation.ui.navigation.BaseNavHost
