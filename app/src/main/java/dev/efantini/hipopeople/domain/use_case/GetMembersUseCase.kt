@@ -10,15 +10,37 @@ class GetMembersUseCase(
     private val repository: MemberRepository
 ) {
 
+    /**
+     * If a query parameter isn't set, only elements are returned. Otherwise, the elements are
+     * filtered, considering the fields that are listed in the filter() function.
+     *
+     * This could be simplified to always run the filter no matter the query, but it's assumed
+     * that the filter function could get expensive in the future, so we don't run it unnecessarily.
+     */
     fun execute(query: String = ""): Flow<Resource<List<Member>>> {
-        return repository.getElements().map { resource ->
-            if (resource is Resource.Success) {
-                Resource.Success(
-                    resource.data.filter { it.name.contains(query) }
-                )
-            } else {
-                resource
+        return if (query.isBlank()) {
+            repository.getElements()
+        } else {
+            repository.getElements().map { resource ->
+                if (resource is Resource.Success) {
+                    Resource.Success(
+                        resource.data.filter {
+                            filter(it, query)
+                        }
+                    )
+                } else {
+                    resource
+                }
             }
+        }
+    }
+
+    private fun filter(member: Member, query: String): Boolean {
+        return when {
+            member.name.contains(query) -> true
+            member.github.contains(query) -> true
+            member.hipo.position.contains(query) -> true
+            else -> false
         }
     }
 }
