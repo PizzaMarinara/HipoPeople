@@ -1,9 +1,8 @@
 package dev.efantini.hipopeople.data.remote.dto
 
 import com.squareup.moshi.Json
-import dev.efantini.hipopeople.domain.model.GithubProfileDetails
 
-data class UserGithubDto(
+data class UserReposOwnerGithubDto(
     val login: String,
     val id: Int,
     @Json(name = "node_id")
@@ -35,34 +34,5 @@ data class UserGithubDto(
     val receivedEventsUrl: String,
     val type: String,
     @Json(name = "site_admin")
-    val siteAdmin: Boolean,
-    val name: String,
-    val company: String,
-    val blog: String,
-    val location: String,
-    val email: String,
-    val hireable: Boolean,
-    val bio: String,
-    @Json(name = "twitter_username")
-    val twitterUsername: String,
-    @Json(name = "public_repos")
-    val publicRepos: Int,
-    @Json(name = "public_gists")
-    val publicGists: Int,
-    val followers: Int,
-    val following: Int,
-    @Json(name = "created_at")
-    val createdAt: String,
-    @Json(name = "updated_at")
-    val updatedAt: String
+    val siteAdmin: Boolean
 )
-
-fun UserGithubDto.toGithubProfileDetails(repos: List<UserReposGithubDto>): GithubProfileDetails {
-    return GithubProfileDetails(
-        avatarUrl = avatarUrl,
-        login = login,
-        followers = followers,
-        following = following,
-        repositories = repos.map { it.toGithubRepositoryDetails() }
-    )
-}

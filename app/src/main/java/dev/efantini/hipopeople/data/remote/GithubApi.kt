@@ -1,11 +1,14 @@
 package dev.efantini.hipopeople.data.remote
 
 import dev.efantini.hipopeople.data.remote.dto.UserGithubDto
-import retrofit2.Call
+import dev.efantini.hipopeople.data.remote.dto.UserReposGithubDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface GithubApi {
-    @GET("users/{username}")
-    suspend fun getUser(@Path("username") username: String): Call<UserGithubDto>
+    @GET("users/{username}/")
+    suspend fun getGithubUser(@Path("username") username: String): UserGithubDto
+
+    @GET("users/{username}/repos/")
+    suspend fun getGithubUserRepos(@Path("username") username: String): List<UserReposGithubDto>
 }
