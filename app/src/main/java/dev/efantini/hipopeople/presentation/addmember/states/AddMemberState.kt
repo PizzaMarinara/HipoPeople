@@ -2,6 +2,5 @@ package dev.efantini.hipopeople.presentation.addmember.states
 
 data class AddMemberState(
     val loading: Boolean = false,
-    val error: String = "",
-    val success: Boolean? = null
+    val error: String = ""
 )

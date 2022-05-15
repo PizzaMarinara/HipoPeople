@@ -22,19 +22,14 @@ class AddMemberViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(AddMemberState(loading = false))
     val uiState: StateFlow<AddMemberState> = _uiState.asStateFlow()
 
-    private fun addMember(member: Member) {
+    fun addMember(member: Member) {
         viewModelScope.launch {
 
             _uiState.value = AddMemberState(loading = true)
-            val success = withContext(Dispatchers.IO) {
-                try {
-                    addMemberUseCase.execute(member)
-                    true
-                } catch (e: Exception) {
-                    false
-                }
+            withContext(Dispatchers.IO) {
+                addMemberUseCase.execute(member)
             }
-            _uiState.value = AddMemberState(success = success)
+            _uiState.value = AddMemberState(loading = false)
         }
     }
 }
