@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.ExperimentalMaterialApi
 import dagger.hilt.android.AndroidEntryPoint
-import dev.efantini.hipopeople.presentation.ui.MainContent
+import dev.efantini.hipopeople.presentation.shared.MainContent
 
 @ExperimentalMaterialApi
 @AndroidEntryPoint

@@ -1,10 +1,11 @@
-package dev.efantini.hipopeople.presentation.ui.navigation
+package dev.efantini.hipopeople.presentation.shared.navigation
 
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dev.efantini.hipopeople.presentation.addmember.AddMemberContent
 import dev.efantini.hipopeople.presentation.memberslist.MembersListContent
 
 @ExperimentalMaterialApi
@@ -18,10 +19,10 @@ fun BaseNavHost(
             MembersListContent(navController)
         }
         composable(NavigationItem.AddMember.route) {
-            // AddUserContent(navController)
+            AddMemberContent(navController)
         }
         composable(NavigationItem.MemberDetail.route) { backStack ->
-            // UserDetailContent(navController, backStack.arguments?.getString("memberId"))
+            // MemberDetailContent(navController, backStack.arguments?.getString("memberId"))
         }
     }
 }

@@ -1,4 +1,4 @@
-package dev.efantini.hipopeople.presentation.ui.navigation
+package dev.efantini.hipopeople.presentation.shared.navigation
 
 sealed class NavigationItem(
     val route: String,

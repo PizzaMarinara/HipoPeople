@@ -1,4 +1,4 @@
-package dev.efantini.hipopeople.presentation.ui.theme
+package dev.efantini.hipopeople.presentation.shared.theme
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.unit.dp

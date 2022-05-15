@@ -1,4 +1,4 @@
-package dev.efantini.hipopeople.presentation.ui.theme
+package dev.efantini.hipopeople.presentation.shared.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
