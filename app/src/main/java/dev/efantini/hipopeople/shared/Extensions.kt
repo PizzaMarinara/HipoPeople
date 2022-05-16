@@ -5,6 +5,9 @@ import dev.efantini.hipopeople.data.remote.dto.UserRepoGithubDto
 import dev.efantini.hipopeople.domain.model.GithubProfileDetails
 import dev.efantini.hipopeople.domain.model.GithubRepositoryDetails
 import dev.efantini.hipopeople.domain.model.Member
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 fun Member.filter(query: String): Boolean {
     return when {
@@ -32,4 +35,14 @@ fun UserRepoGithubDto.toGithubRepositoryDetails(): GithubRepositoryDetails {
         language = language ?: "",
         stargazersCount = stargazersCount ?: 0
     )
+}
+
+fun String.formattedDate(): String {
+    val firstApiFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+    return try {
+        val date = LocalDate.parse(this, firstApiFormat)
+        date.format(DateTimeFormatter.ofPattern("EEEE dd, yyyy", Locale.ENGLISH))
+    } catch (e: Exception) {
+        this
+    }
 }

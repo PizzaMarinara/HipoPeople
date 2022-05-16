@@ -3,9 +3,11 @@ package dev.efantini.hipopeople.presentation.memberdetail
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -23,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import dev.efantini.hipopeople.presentation.memberdetail.elements.GithubProfileBox
+import dev.efantini.hipopeople.presentation.memberdetail.elements.RepoListHeader
 import dev.efantini.hipopeople.presentation.memberdetail.elements.RepoListItem
 import dev.efantini.hipopeople.presentation.shared.elements.HipoTopBar
 
@@ -68,23 +72,36 @@ fun MemberDetailContent(
                     }
                 } else {
                     state.githubProfile?.let { githubProfile ->
+                        Box(
+                            contentAlignment = Alignment.BottomCenter,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Column(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.spacedBy(15.dp)
+                            ) {
+                                GithubProfileBox(githubProfile)
+                                Spacer(modifier = Modifier.height(5.dp))
+                            }
+                        }
                         LazyColumn(
                             modifier = Modifier.fillMaxWidth()
-                                .weight(1f)
+                                .weight(1f),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(10.dp)
                         ) {
                             item {
+                                RepoListHeader()
                             }
                             items(githubProfile.repositories) {
                                 RepoListItem(repo = it)
                             }
+                            item {
+                                Spacer(modifier = Modifier.height(5.dp))
+                            }
                         }
                     }
-
-                    Text(text = "Loading: " + state.loading.toString())
-                    Text(text = if (state.error.isBlank()) "No Errors" else "Error: ${state.error}")
-                    Text(text = state.githubProfile?.login ?: "")
-                    Text(text = state.githubProfile?.followers.toString())
-                    Text(text = state.githubProfile?.followers.toString())
                 }
             }
         }

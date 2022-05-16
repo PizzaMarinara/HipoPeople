@@ -25,4 +25,6 @@ val md_theme_dark_surface = Color(0xFF1f1a1b)
 val md_theme_dark_onSurface = Color(0xFFebe0e1)
 
 val error = Color(0xFFB3261E)
+val CuteRed = Color(0xFFE84A5F)
+val DarkerRed = Color(0xFFB00136)
 val SuperRed = Color(0xFFFF0000)

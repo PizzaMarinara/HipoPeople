@@ -28,6 +28,11 @@ object Libs {
         }
     }
 
+    object Desugaring {
+        private const val version = "1.1.5"
+        const val desugarJdk = "com.android.tools:desugar_jdk_libs:$version"
+    }
+
     object AndroidX {
         object Activity {
             const val activityCompose = "androidx.activity:activity-compose:1.4.0"
@@ -121,6 +126,12 @@ object Libs {
         const val moshiCodegen = "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
         const val moshiConverter =
             "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    }
+
+    object Coil {
+        private const val version = "2.0.0"
+        const val main = "io.coil-kt:coil:$version"
+        const val compose = "io.coil-kt:coil-compose:$version"
     }
 
     object Timber {

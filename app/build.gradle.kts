@@ -7,6 +7,7 @@ plugins {
 android {
     compileSdk = Libs.App.compileSdkVersion
     defaultConfig {
+        multiDexEnabled = true
         applicationId = Libs.App.applicationId
         minSdk = Libs.App.minSdkVersion
         targetSdk = Libs.App.targetSdkVersion
@@ -40,6 +41,7 @@ android {
         shaders = false
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -96,10 +98,17 @@ dependencies {
     implementation(Libs.Network.moshi)
     kapt(Libs.Network.moshiCodegen)
 
+    // Coil
+    implementation(Libs.Coil.main)
+    implementation(Libs.Coil.compose)
+
     // Test
     androidTestImplementation(Libs.AndroidX.Compose.uiTest)
     androidTestImplementation(Libs.AndroidX.Test.rules)
     androidTestImplementation(Libs.AndroidX.Test.runner)
     androidTestImplementation(Libs.AndroidX.Test.Ext.junit)
     testImplementation(Libs.JUnit.junit)
+
+    // Desugaring
+    coreLibraryDesugaring(Libs.Desugaring.desugarJdk)
 }
