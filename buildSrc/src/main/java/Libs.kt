@@ -6,7 +6,7 @@ object Libs {
 
     object Plugins {
         object Spotless {
-            const val version = "6.6.0"
+            const val version = "6.6.1"
             const val pluginId = "com.diffplug.spotless"
         }
         object GradleVersions {
