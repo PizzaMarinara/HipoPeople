@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.runtime.Composable
@@ -31,6 +32,7 @@ fun SearchView(
                         onQueryChange("")
                     }
             )
-        }
+        },
+        colors = TextFieldDefaults.textFieldColors()
     )
 }

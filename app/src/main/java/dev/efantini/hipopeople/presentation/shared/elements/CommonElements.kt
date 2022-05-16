@@ -10,18 +10,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,8 +25,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import dev.efantini.hipopeople.presentation.shared.theme.BasicShapes
-import dev.efantini.hipopeople.presentation.shared.theme.Black
-import dev.efantini.hipopeople.presentation.shared.theme.Dark4
 
 @Composable
 fun HipoTopBar(
@@ -50,18 +44,14 @@ fun HipoTopBar(
 
             if (navController.previousBackStackEntry != null) {
                 Row(titleIconModifier, verticalAlignment = Alignment.CenterVertically) {
-                    CompositionLocalProvider(
-                        LocalContentAlpha provides ContentAlpha.high,
+                    IconButton(
+                        onClick = { navController.navigateUp() },
+                        enabled = true,
                     ) {
-                        IconButton(
-                            onClick = { navController.navigateUp() },
-                            enabled = true,
-                        ) {
-                            Icon(
-                                imageVector = Icons.Filled.ArrowBack,
-                                contentDescription = "Back",
-                            )
-                        }
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Back",
+                        )
                     }
                 }
             }
@@ -102,11 +92,7 @@ fun HipoBigButton(
     Button(
         onClick = onClick,
         modifier = modifier,
-        shape = BasicShapes.large,
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = Dark4,
-            contentColor = Black
-        )
+        shape = BasicShapes.large
     ) {
         Text(
             modifier = Modifier

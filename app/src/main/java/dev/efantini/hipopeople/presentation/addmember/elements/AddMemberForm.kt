@@ -1,7 +1,7 @@
 package dev.efantini.hipopeople.presentation.addmember.elements
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -23,7 +24,11 @@ fun HipoForm(
 ) {
     state.fields = fields
 
-    LazyColumn(modifier = modifier) {
+    LazyColumn(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         items(fields) {
             it.Content()
         }
@@ -60,7 +65,6 @@ class HipoFormField(
             },
             keyboardOptions = keyboardOptions,
             modifier = modifier
-                .padding(10.dp)
                 .fillMaxWidth(0.9F),
             onValueChange = { value ->
                 text = value

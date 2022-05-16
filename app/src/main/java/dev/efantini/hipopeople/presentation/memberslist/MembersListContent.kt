@@ -1,6 +1,5 @@
 package dev.efantini.hipopeople.presentation.memberslist
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,8 +35,6 @@ import dev.efantini.hipopeople.presentation.memberslist.elements.SearchView
 import dev.efantini.hipopeople.presentation.shared.elements.HipoBigButton
 import dev.efantini.hipopeople.presentation.shared.elements.HipoTopBar
 import dev.efantini.hipopeople.presentation.shared.navigation.NavigationItem
-import dev.efantini.hipopeople.presentation.shared.theme.BackgroundGrey2
-import dev.efantini.hipopeople.presentation.shared.theme.Palette2
 import dev.efantini.hipopeople.shared.filter
 
 @ExperimentalMaterialApi
@@ -75,21 +72,21 @@ fun MembersListContent(
                         modifier = Modifier
                             .fillMaxSize()
                             .alpha(0.5F)
-                            .background(BackgroundGrey2)
                             .zIndex(2F)
                     ) {
                         CircularProgressIndicator(
                             modifier = Modifier
                                 .fillMaxWidth(0.5F)
-                                .fillMaxHeight(),
-                            color = Palette2,
+                                .fillMaxHeight()
                         )
                     }
                 } else {
 
                     LazyColumn(
                         modifier = Modifier.fillMaxWidth()
-                            .weight(1f)
+                            .weight(1f),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
                         items(
                             state.members.filter {
@@ -100,6 +97,9 @@ fun MembersListContent(
                                 member = it,
                                 onClick = onMemberClicked
                             )
+                        }
+                        item {
+                            Spacer(modifier = Modifier.height(5.dp))
                         }
                     }
                     Box(
