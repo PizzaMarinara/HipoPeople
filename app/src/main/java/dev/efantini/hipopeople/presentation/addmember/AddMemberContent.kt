@@ -81,8 +81,7 @@ fun AddMemberContent(
             Column(modifier = Modifier.fillMaxSize()) {
                 if (state.error.isNotBlank()) {
                     Text(text = "The following error has occurred: ${state.error}")
-                }
-                if (state.loading) {
+                } else if (state.loading) {
                     Surface(
                         modifier = Modifier
                             .fillMaxSize()
@@ -97,62 +96,63 @@ fun AddMemberContent(
                             color = Palette2,
                         )
                     }
-                }
+                } else {
 
-                HipoForm(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.CenterHorizontally)
-                        .weight(1F),
-                    state = formState,
-                    fields = listOf(
-                        HipoFormField(
-                            name = "name",
-                            label = "Name",
-                            hint = "Please enter your name"
-                        ),
-                        HipoFormField(
-                            name = "position",
-                            label = "Position",
-                            hint = "Please enter your position"
-                        ),
-                        HipoFormField(
-                            name = "age",
-                            label = "Age",
-                            hint = "Please enter your age",
-                            keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number
+                    HipoForm(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.CenterHorizontally)
+                            .weight(1F),
+                        state = formState,
+                        fields = listOf(
+                            HipoFormField(
+                                name = "name",
+                                label = "Name",
+                                hint = "Please enter your name"
+                            ),
+                            HipoFormField(
+                                name = "position",
+                                label = "Position",
+                                hint = "Please enter your position"
+                            ),
+                            HipoFormField(
+                                name = "age",
+                                label = "Age",
+                                hint = "Please enter your age",
+                                keyboardOptions = KeyboardOptions(
+                                    keyboardType = KeyboardType.Number
+                                )
+                            ),
+                            HipoFormField(
+                                name = "location",
+                                label = "Location",
+                                hint = "Please enter your location"
+                            ),
+                            HipoFormField(
+                                name = "yearsInHipo",
+                                label = "Number of years in Hipo",
+                                hint = "Please enter how many years you worked at Hipo",
+                                keyboardOptions = KeyboardOptions(
+                                    keyboardType = KeyboardType.Number
+                                )
+                            ),
+                            HipoFormField(
+                                name = "github",
+                                label = "Github",
+                                hint = "Please enter your Github username"
                             )
-                        ),
-                        HipoFormField(
-                            name = "location",
-                            label = "Location",
-                            hint = "Please enter your location"
-                        ),
-                        HipoFormField(
-                            name = "yearsInHipo",
-                            label = "Number of years in Hipo",
-                            hint = "Please enter how many years you worked at Hipo",
-                            keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number
-                            )
-                        ),
-                        HipoFormField(
-                            name = "github",
-                            label = "Github",
-                            hint = "Please enter your Github username"
                         )
                     )
-                )
 
-                Box(
-                    contentAlignment = Alignment.BottomCenter,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    HipoBigButton(
-                        text = "Save",
-                        onClick = onSaveClicked
-                    )
+                    Box(
+                        contentAlignment = Alignment.BottomCenter,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        HipoBigButton(
+                            text = "Save",
+                            onClick = onSaveClicked
+                        )
+                    }
                 }
             }
         }

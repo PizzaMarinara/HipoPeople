@@ -70,8 +70,7 @@ fun MembersListContent(
 
                 if (state.error.isNotBlank()) {
                     Text(text = "The following error has occurred: ${state.error}")
-                }
-                if (state.loading) {
+                } else if (state.loading) {
                     Surface(
                         modifier = Modifier
                             .fillMaxSize()
@@ -86,45 +85,46 @@ fun MembersListContent(
                             color = Palette2,
                         )
                     }
-                }
+                } else {
 
-                LazyColumn(
-                    modifier = Modifier.fillMaxWidth()
-                        .weight(1f)
-                ) {
-                    items(
-                        state.members.filter {
-                            it.filter(query)
-                        }
+                    LazyColumn(
+                        modifier = Modifier.fillMaxWidth()
+                            .weight(1f)
                     ) {
-                        MemberListItem(
-                            member = it,
-                            onClick = onMemberClicked
-                        )
-                    }
-                }
-                Box(
-                    contentAlignment = Alignment.BottomCenter,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Column(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(15.dp)
-                    ) {
-                        SearchView(
-                            modifier = Modifier.fillMaxWidth(0.9F),
-                            query = query,
-                            onQueryChange = {
-                                query = it
+                        items(
+                            state.members.filter {
+                                it.filter(query)
                             }
-                        )
-                        HipoBigButton(
-                            modifier = Modifier.fillMaxWidth(0.9F),
-                            text = "Add Member",
-                            onClick = onAddMemberClicked
-                        )
-                        Spacer(modifier = Modifier.height(5.dp))
+                        ) {
+                            MemberListItem(
+                                member = it,
+                                onClick = onMemberClicked
+                            )
+                        }
+                    }
+                    Box(
+                        contentAlignment = Alignment.BottomCenter,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Column(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(15.dp)
+                        ) {
+                            SearchView(
+                                modifier = Modifier.fillMaxWidth(0.9F),
+                                query = query,
+                                onQueryChange = {
+                                    query = it
+                                }
+                            )
+                            HipoBigButton(
+                                modifier = Modifier.fillMaxWidth(0.9F),
+                                text = "Add Member",
+                                onClick = onAddMemberClicked
+                            )
+                            Spacer(modifier = Modifier.height(5.dp))
+                        }
                     }
                 }
             }
