@@ -1,11 +1,13 @@
 package dev.efantini.hipopeople
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import dev.efantini.hipopeople.presentation.MainActivity
 import org.junit.Rule
 import org.junit.Test
 
+@ExperimentalMaterialApi
 class ExampleInstrumentedTest {
 
     @get:Rule()
