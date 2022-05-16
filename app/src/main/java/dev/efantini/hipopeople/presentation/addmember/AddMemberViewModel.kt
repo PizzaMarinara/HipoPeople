@@ -10,7 +10,6 @@ import dev.efantini.hipopeople.presentation.addmember.states.AddMemberState
 import dev.efantini.hipopeople.presentation.shared.elements.HipoFormState
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -37,7 +36,6 @@ class AddMemberViewModel @Inject constructor(
             viewModelScope.launch {
 
                 launch(Dispatchers.IO) {
-                    delay(3000)
                     addMemberUseCase.execute(member)
                 }.join()
 
