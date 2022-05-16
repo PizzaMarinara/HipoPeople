@@ -1,68 +1,71 @@
 package dev.efantini.hipopeople.data.remote.dto
 
 import com.squareup.moshi.Json
-import dev.efantini.hipopeople.domain.model.GithubProfileDetails
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class UserGithubDto(
     val login: String,
-    val id: Int,
+    val id: Int?,
     @Json(name = "node_id")
-    val nodeId: String,
+    val nodeId: String?,
     @Json(name = "avatar_url")
     val avatarUrl: String,
     @Json(name = "gravatar_id")
-    val gravatarId: String,
-    val url: String,
+    val gravatarId: String?,
+    val url: String?,
     @Json(name = "html_url")
-    val htmlUrl: String,
+    val htmlUrl: String?,
     @Json(name = "followers_url")
-    val followersUrl: String,
+    val followersUrl: String?,
     @Json(name = "following_url")
-    val followingUrl: String,
+    val followingUrl: String?,
     @Json(name = "gists_url")
-    val gistsUrl: String,
+    val gistsUrl: String?,
     @Json(name = "starred_url")
-    val starredUrl: String,
+    val starredUrl: String?,
     @Json(name = "subscriptions_url")
-    val subscriptionsUrl: String,
+    val subscriptionsUrl: String?,
     @Json(name = "organizations_url")
-    val organizationsUrl: String,
+    val organizationsUrl: String?,
     @Json(name = "repos_url")
-    val reposUrl: String,
+    val reposUrl: String?,
     @Json(name = "events_url")
-    val eventsUrl: String,
+    val eventsUrl: String?,
     @Json(name = "received_events_url")
-    val receivedEventsUrl: String,
-    val type: String,
+    val receivedEventsUrl: String?,
+    val type: String?,
     @Json(name = "site_admin")
-    val siteAdmin: Boolean,
-    val name: String,
-    val company: String,
-    val blog: String,
-    val location: String,
-    val email: String,
-    val hireable: Boolean,
-    val bio: String,
+    val siteAdmin: Boolean?,
+    val name: String?,
+    val company: String?,
+    val blog: String?,
+    val location: String?,
+    val email: String?,
+    val hireable: Boolean?,
+    val bio: String?,
     @Json(name = "twitter_username")
-    val twitterUsername: String,
+    val twitterUsername: String?,
     @Json(name = "public_repos")
-    val publicRepos: Int,
+    val publicRepos: Int?,
     @Json(name = "public_gists")
-    val publicGists: Int,
+    val publicGists: Int?,
     val followers: Int,
     val following: Int,
     @Json(name = "created_at")
-    val createdAt: String,
+    val createdAt: String?,
     @Json(name = "updated_at")
-    val updatedAt: String
+    val updatedAt: String?,
+    @Json(name = "private_gists")
+    val privateGists: Int?,
+    @Json(name = "total_private_repos")
+    val totalPrivateRepos: Int?,
+    @Json(name = "owned_private_repos")
+    val ownedPrivateRepos: Int?,
+    @Json(name = "disk_usage")
+    val diskUsage: Int?,
+    val collaborators: Int?,
+    @Json(name = "two_factor_authentication")
+    val twoFactorAuthentication: Boolean?,
+    val plan: UserGithubPlanDto?
 )
-
-fun UserGithubDto.toGithubProfileDetails(repos: List<UserReposGithubDto>): GithubProfileDetails {
-    return GithubProfileDetails(
-        avatarUrl = avatarUrl,
-        login = login,
-        followers = followers,
-        following = following,
-        repositories = repos.map { it.toGithubRepositoryDetails() }
-    )
-}

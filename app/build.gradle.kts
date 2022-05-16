@@ -94,6 +94,7 @@ dependencies {
 
     // Moshi
     implementation(Libs.Network.moshi)
+    kapt(Libs.Network.moshiCodegen)
 
     // Test
     androidTestImplementation(Libs.AndroidX.Compose.uiTest)

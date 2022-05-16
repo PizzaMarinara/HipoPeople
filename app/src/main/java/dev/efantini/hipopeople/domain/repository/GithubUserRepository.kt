@@ -5,5 +5,5 @@ import dev.efantini.hipopeople.shared.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface GithubUserRepository {
-    suspend fun getGithubUser(username: String): Flow<Resource<GithubProfileDetails>>
+    fun getGithubUser(username: String): Flow<Resource<GithubProfileDetails>>
 }

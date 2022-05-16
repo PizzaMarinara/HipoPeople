@@ -9,8 +9,11 @@ import dagger.hilt.components.SingletonComponent
 import dev.efantini.hipopeople.data.local.HipoPeopleDatabase
 import dev.efantini.hipopeople.data.local.repository.MemberRepositoryLocal
 import dev.efantini.hipopeople.data.remote.GithubApi
+import dev.efantini.hipopeople.data.remote.repository.GithubUserRepositoryRemote
+import dev.efantini.hipopeople.domain.repository.GithubUserRepository
 import dev.efantini.hipopeople.domain.repository.MemberRepository
 import dev.efantini.hipopeople.domain.use_case.AddMemberUseCase
+import dev.efantini.hipopeople.domain.use_case.GetGithubUserUseCase
 import dev.efantini.hipopeople.domain.use_case.GetMembersUseCase
 import dev.efantini.hipopeople.shared.Constants
 import javax.inject.Singleton
@@ -49,6 +52,12 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideGithubUserRepository(api: GithubApi): GithubUserRepository {
+        return GithubUserRepositoryRemote(api)
+    }
+
+    @Provides
+    @Singleton
     fun provideGetMembersUseCase(repository: MemberRepository): GetMembersUseCase {
         return GetMembersUseCase(repository)
     }
@@ -57,5 +66,11 @@ object AppModule {
     @Singleton
     fun provideAddMemberUseCase(repository: MemberRepository): AddMemberUseCase {
         return AddMemberUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetGithubUserUseCase(repository: GithubUserRepository): GetGithubUserUseCase {
+        return GetGithubUserUseCase(repository)
     }
 }
