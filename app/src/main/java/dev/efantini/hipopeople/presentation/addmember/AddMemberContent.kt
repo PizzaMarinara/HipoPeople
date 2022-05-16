@@ -25,10 +25,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import dev.efantini.hipopeople.presentation.addmember.elements.HipoForm
+import dev.efantini.hipopeople.presentation.addmember.elements.HipoFormField
+import dev.efantini.hipopeople.presentation.addmember.elements.HipoFormState
 import dev.efantini.hipopeople.presentation.shared.elements.HipoBigButton
-import dev.efantini.hipopeople.presentation.shared.elements.HipoForm
-import dev.efantini.hipopeople.presentation.shared.elements.HipoFormField
-import dev.efantini.hipopeople.presentation.shared.elements.HipoFormState
 import dev.efantini.hipopeople.presentation.shared.elements.HipoTopBar
 import dev.efantini.hipopeople.presentation.shared.elements.SimpleAlertDialog
 import dev.efantini.hipopeople.presentation.shared.navigation.NavigationItem

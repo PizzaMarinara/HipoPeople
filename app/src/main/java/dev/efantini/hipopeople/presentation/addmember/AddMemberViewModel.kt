@@ -6,8 +6,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.efantini.hipopeople.domain.model.Hipo
 import dev.efantini.hipopeople.domain.model.Member
 import dev.efantini.hipopeople.domain.use_case.AddMemberUseCase
+import dev.efantini.hipopeople.presentation.addmember.elements.HipoFormState
 import dev.efantini.hipopeople.presentation.addmember.states.AddMemberState
-import dev.efantini.hipopeople.presentation.shared.elements.HipoFormState
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
