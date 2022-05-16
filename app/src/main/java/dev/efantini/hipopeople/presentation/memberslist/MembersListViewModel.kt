@@ -25,16 +25,8 @@ class MembersListViewModel @Inject constructor(
         getUsers()
     }
 
-    /**
-     * A public wrapping function is used because we could have some kind of input sanitization before
-     * running a query, right now the String is just trimmed.
-     */
-    fun filterUsers(query: String) {
-        getUsers(query.trim())
-    }
-
-    private fun getUsers(query: String = "") {
-        getMembersUseCase.execute(query).onEach { result ->
+    private fun getUsers() {
+        getMembersUseCase.execute().onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _uiState.value = MembersListState(

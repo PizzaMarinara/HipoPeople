@@ -13,8 +13,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -46,13 +44,13 @@ fun HipoTopBar(
 
 @Composable
 fun HipoBigButton(
+    modifier: Modifier = Modifier,
     text: String = "",
     onClick: () -> Unit = {}
 ) {
     Button(
         onClick = onClick,
-        modifier = Modifier
-            .padding(horizontal = 50.dp, vertical = 15.dp),
+        modifier = modifier,
         shape = BasicShapes.large,
         colors = ButtonDefaults.buttonColors(
             backgroundColor = Dark4,
