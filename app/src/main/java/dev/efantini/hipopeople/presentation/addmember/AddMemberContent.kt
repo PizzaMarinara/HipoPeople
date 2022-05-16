@@ -100,7 +100,10 @@ fun AddMemberContent(
                 }
 
                 HipoForm(
-                    modifier = Modifier.fillMaxWidth().align(Alignment.CenterHorizontally),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.CenterHorizontally)
+                        .weight(1F),
                     state = formState,
                     fields = listOf(
                         HipoFormField(

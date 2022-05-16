@@ -1,8 +1,9 @@
 package dev.efantini.hipopeople.presentation.addmember.elements
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -22,8 +23,8 @@ fun HipoForm(
 ) {
     state.fields = fields
 
-    Column(modifier = modifier) {
-        fields.forEach {
+    LazyColumn(modifier = modifier) {
+        items(fields) {
             it.Content()
         }
     }
@@ -37,10 +38,8 @@ class HipoFormField(
 ) {
     var text: String by mutableStateOf("")
 
-    fun clear() { text = "" }
-
     @Composable
-    fun Content() {
+    fun Content(modifier: Modifier = Modifier) {
         TextField(
             value = text,
             placeholder = {
@@ -60,7 +59,7 @@ class HipoFormField(
                 )
             },
             keyboardOptions = keyboardOptions,
-            modifier = Modifier
+            modifier = modifier
                 .padding(10.dp)
                 .fillMaxWidth(0.9F),
             onValueChange = { value ->
