@@ -13,11 +13,11 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -25,14 +25,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import dev.efantini.hipopeople.domain.model.Hipo
-import dev.efantini.hipopeople.domain.model.Member
 import dev.efantini.hipopeople.presentation.shared.elements.HipoBigButton
 import dev.efantini.hipopeople.presentation.shared.elements.HipoForm
 import dev.efantini.hipopeople.presentation.shared.elements.HipoFormField
 import dev.efantini.hipopeople.presentation.shared.elements.HipoFormState
 import dev.efantini.hipopeople.presentation.shared.elements.HipoTopBar
 import dev.efantini.hipopeople.presentation.shared.elements.SimpleAlertDialog
+import dev.efantini.hipopeople.presentation.shared.navigation.NavigationItem
 import dev.efantini.hipopeople.presentation.shared.theme.BackgroundGrey2
 import dev.efantini.hipopeople.presentation.shared.theme.Palette2
 
@@ -45,25 +44,29 @@ fun AddMemberContent(
 
     val formState by remember { mutableStateOf(HipoFormState()) }
 
-    val formValidationDialogShowing = rememberSaveable { mutableStateOf(false) }
-
     val onSaveClicked: () -> Unit = {
-        val member = createMemberFromFormState(formState)
-        if (member != null) {
-            viewModel.addMember(member)
-        } else {
-            formValidationDialogShowing.value = true
-        }
+        viewModel.addMember(formState)
+    }
+    LaunchedEffect(Unit) {
+        viewModel
+            .uiState
+            .collect { state ->
+                if (state.success) {
+                    navController.navigate(NavigationItem.MembersList.route) {
+                        popUpTo(NavigationItem.MembersList.route) { inclusive = true }
+                    }
+                }
+            }
     }
 
-    if (formValidationDialogShowing.value) {
+    if (state.formValidationDialogShowing) {
         SimpleAlertDialog(
             onConfirm = {
-                formValidationDialogShowing.value = false
+                viewModel.dismissFormValidationDialog()
             },
             onCancel = {},
             onDismiss = {
-                formValidationDialogShowing.value = false
+                viewModel.dismissFormValidationDialog()
             },
             cancelButtonVisible = false,
             title = { Text(text = "Warning") },
@@ -96,76 +99,59 @@ fun AddMemberContent(
                     }
                 }
 
-                Column {
-                    HipoForm(
-                        state = formState,
-                        fields = listOf(
-                            HipoFormField(
-                                name = "name",
-                                label = "Name",
-                                hint = "Please enter your name"
-                            ),
-                            HipoFormField(
-                                name = "position",
-                                label = "Position",
-                                hint = "Please enter your position"
-                            ),
-                            HipoFormField(
-                                name = "age",
-                                label = "Age",
-                                hint = "Please enter your age",
-                                keyboardOptions = KeyboardOptions(
-                                    keyboardType = KeyboardType.Number
-                                )
-                            ),
-                            HipoFormField(
-                                name = "location",
-                                label = "Location",
-                                hint = "Please enter your location"
-                            ),
-                            HipoFormField(
-                                name = "yearsInHipo",
-                                label = "Number of years in Hipo",
-                                hint = "Please enter how many years you worked at Hipo",
-                                keyboardOptions = KeyboardOptions(
-                                    keyboardType = KeyboardType.Number
-                                )
-                            ),
-                            HipoFormField(
-                                name = "github",
-                                label = "Github",
-                                hint = "Please enter your Github username"
+                HipoForm(
+                    modifier = Modifier.fillMaxWidth().align(Alignment.CenterHorizontally),
+                    state = formState,
+                    fields = listOf(
+                        HipoFormField(
+                            name = "name",
+                            label = "Name",
+                            hint = "Please enter your name"
+                        ),
+                        HipoFormField(
+                            name = "position",
+                            label = "Position",
+                            hint = "Please enter your position"
+                        ),
+                        HipoFormField(
+                            name = "age",
+                            label = "Age",
+                            hint = "Please enter your age",
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number
                             )
+                        ),
+                        HipoFormField(
+                            name = "location",
+                            label = "Location",
+                            hint = "Please enter your location"
+                        ),
+                        HipoFormField(
+                            name = "yearsInHipo",
+                            label = "Number of years in Hipo",
+                            hint = "Please enter how many years you worked at Hipo",
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number
+                            )
+                        ),
+                        HipoFormField(
+                            name = "github",
+                            label = "Github",
+                            hint = "Please enter your Github username"
                         )
                     )
-                }
+                )
+
                 Box(
                     contentAlignment = Alignment.BottomCenter,
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     HipoBigButton(
-                        text = "Add Member",
+                        text = "Save",
                         onClick = onSaveClicked
                     )
                 }
             }
         }
-    }
-}
-
-private fun createMemberFromFormState(state: HipoFormState): Member? {
-    return try {
-        Member(
-            name = state.getData().getOrDefault("name", ""),
-            age = state.getData().getOrDefault("age", "").toInt(),
-            location = state.getData().getOrDefault("location", ""),
-            github = state.getData().getOrDefault("github", ""),
-            hipo = Hipo(
-                position = state.getData().getOrDefault("position", ""),
-                yearsInHipo = state.getData().getOrDefault("yearsInHipo", "").toInt(),
-            )
-        )
-    } catch (e: Exception) {
-        null
     }
 }

@@ -22,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import dev.efantini.hipopeople.presentation.shared.theme.BasicShapes
@@ -49,10 +50,14 @@ fun HipoTopBar(
 }
 
 @Composable
-fun HipoForm(state: HipoFormState, fields: List<HipoFormField>) {
+fun HipoForm(
+    modifier: Modifier = Modifier,
+    state: HipoFormState,
+    fields: List<HipoFormField>
+) {
     state.fields = fields
 
-    Column {
+    Column(modifier = modifier) {
         fields.forEach {
             it.Content()
         }
@@ -73,10 +78,26 @@ class HipoFormField(
     fun Content() {
         TextField(
             value = text,
-            placeholder = { Text(text = hint) },
-            label = { Text(text = label) },
+            placeholder = {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = hint,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            },
+            label = {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = label,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            },
             keyboardOptions = keyboardOptions,
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier
+                .padding(10.dp)
+                .fillMaxWidth(0.9F),
             onValueChange = { value ->
                 text = value
             }
