@@ -2,8 +2,9 @@ package dev.efantini.hipopeople.domain.use_case
 
 import dev.efantini.hipopeople.domain.model.Member
 import dev.efantini.hipopeople.domain.repository.MemberRepository
+import javax.inject.Inject
 
-class AddMemberUseCase(
+class AddMemberUseCase @Inject constructor(
     private val repository: MemberRepository
 ) {
 
