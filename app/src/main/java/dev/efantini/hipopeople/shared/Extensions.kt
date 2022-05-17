@@ -41,7 +41,7 @@ fun String.formattedDate(): String {
     val firstApiFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
     return try {
         val date = LocalDate.parse(this, firstApiFormat)
-        date.format(DateTimeFormatter.ofPattern("EEEE dd, yyyy", Locale.ENGLISH))
+        date.format(DateTimeFormatter.ofPattern("MMMM dd, yyyy", Locale.ENGLISH))
     } catch (e: Exception) {
         this
     }
