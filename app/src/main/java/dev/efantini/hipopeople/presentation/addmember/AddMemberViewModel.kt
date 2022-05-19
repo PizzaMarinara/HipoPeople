@@ -9,7 +9,6 @@ import dev.efantini.hipopeople.domain.use_case.AddMemberUseCase
 import dev.efantini.hipopeople.presentation.addmember.elements.HipoFormState
 import dev.efantini.hipopeople.presentation.addmember.states.AddMemberState
 import javax.inject.Inject
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -35,9 +34,7 @@ class AddMemberViewModel @Inject constructor(
         } else {
             viewModelScope.launch {
 
-                launch(Dispatchers.IO) {
-                    addMemberUseCase.execute(member)
-                }.join()
+                addMemberUseCase.execute(member)
 
                 _uiState.value = AddMemberState(loading = false, success = true)
             }
