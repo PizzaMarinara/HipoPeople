@@ -9,6 +9,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import dev.efantini.hipopeople.R
 
 @Composable
 fun SearchView(
@@ -19,14 +21,14 @@ fun SearchView(
     TextField(
         modifier = modifier,
         value = query,
-        placeholder = { Text("Search") },
+        placeholder = { Text(stringResource(id = R.string.search)) },
         onValueChange = {
             onQueryChange(it)
         },
         trailingIcon = {
             Icon(
                 Icons.Default.Clear,
-                contentDescription = "Clear",
+                contentDescription = "",
                 modifier = Modifier
                     .clickable {
                         onQueryChange("")

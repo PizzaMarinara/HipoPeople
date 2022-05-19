@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -37,7 +38,7 @@ fun GithubProfileBox(
                 .crossfade(true)
                 .build(),
             placeholder = painterResource(R.drawable.userimage),
-            contentDescription = "Profile",
+            contentDescription = stringResource(id = R.string.profile),
             contentScale = ContentScale.Fit
         )
         Row(
@@ -45,11 +46,11 @@ fun GithubProfileBox(
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text("Followers")
+                Text(stringResource(id = R.string.followers))
                 Text(profileDetails.followers.toString())
             }
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text("Following")
+                Text(stringResource(id = R.string.following))
                 Text(profileDetails.following.toString())
             }
         }

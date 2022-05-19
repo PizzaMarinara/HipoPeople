@@ -16,9 +16,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import dev.efantini.hipopeople.R
 import dev.efantini.hipopeople.domain.model.Member
 import dev.efantini.hipopeople.presentation.memberslist.elements.ListWithSearch
 import dev.efantini.hipopeople.presentation.shared.elements.HipoTopBar
@@ -42,7 +44,7 @@ fun MembersListContent(
     }
 
     Scaffold(topBar = {
-        HipoTopBar(navController, "Members")
+        HipoTopBar(navController, stringResource(id = R.string.members_list_top_bar))
     }) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             Column(
@@ -51,7 +53,7 @@ fun MembersListContent(
             ) {
 
                 if (state.error.isNotBlank()) {
-                    Text(text = "The following error has occurred: ${state.error}")
+                    Text(text = stringResource(id = R.string.error_occurred, state.error))
                 } else if (state.loading) {
                     Surface(
                         modifier = Modifier

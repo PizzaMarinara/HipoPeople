@@ -21,10 +21,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import dev.efantini.hipopeople.R
 import dev.efantini.hipopeople.presentation.memberdetail.elements.GithubProfileBox
 import dev.efantini.hipopeople.presentation.memberdetail.elements.RepoListHeader
 import dev.efantini.hipopeople.presentation.memberdetail.elements.RepoListItem
@@ -45,7 +47,7 @@ fun MemberDetailContent(
             if (state.githubProfile != null)
                 state.githubProfile.login
             else
-                "Member Detail"
+                ""
         )
     }) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
@@ -54,7 +56,7 @@ fun MemberDetailContent(
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 if (state.error.isNotBlank()) {
-                    Text(text = "The following error has occurred: ${state.error}")
+                    Text(text = stringResource(id = R.string.error_occurred, state.error))
                 } else if (state.loading) {
                     Surface(
                         modifier = Modifier

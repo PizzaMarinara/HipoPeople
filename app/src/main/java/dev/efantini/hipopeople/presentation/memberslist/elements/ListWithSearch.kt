@@ -17,7 +17,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import dev.efantini.hipopeople.R
 import dev.efantini.hipopeople.domain.model.Member
 import dev.efantini.hipopeople.presentation.memberslist.states.MembersListState
 import dev.efantini.hipopeople.presentation.shared.elements.HipoBigButton
@@ -73,7 +75,7 @@ fun ListWithSearch(
                 )
                 HipoBigButton(
                     modifier = Modifier.fillMaxWidth(0.9F),
-                    text = "Add Member",
+                    text = stringResource(id = R.string.add_member_button),
                     onClick = onAddMemberClicked
                 )
                 Spacer(modifier = Modifier.height(5.dp))

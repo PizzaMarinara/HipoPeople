@@ -23,11 +23,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import dev.efantini.hipopeople.R
 import dev.efantini.hipopeople.presentation.addmember.elements.HipoForm
 import dev.efantini.hipopeople.presentation.addmember.elements.HipoFormField
 import dev.efantini.hipopeople.presentation.addmember.elements.HipoFormState
@@ -70,18 +72,18 @@ fun AddMemberContent(
                 viewModel.dismissFormValidationDialog()
             },
             cancelButtonVisible = false,
-            title = { Text(text = "Warning") },
-            text = { Text(text = "Some of the fields are not filled. Please fill all the fields.") }
+            title = { Text(text = stringResource(id = R.string.warning)) },
+            text = { Text(text = stringResource(id = R.string.some_fields_not_filled)) }
         )
     }
 
     Scaffold(topBar = {
-        HipoTopBar(navController, "Add Member")
+        HipoTopBar(navController, stringResource(id = R.string.add_member_top_bar))
     }) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             Column(modifier = Modifier.fillMaxSize()) {
                 if (state.error.isNotBlank()) {
-                    Text(text = "The following error has occurred: ${state.error}")
+                    Text(text = stringResource(id = R.string.error_occurred, state.error))
                 } else if (state.loading) {
                     Surface(
                         modifier = Modifier
@@ -106,39 +108,39 @@ fun AddMemberContent(
                         fields = listOf(
                             HipoFormField(
                                 name = "name",
-                                label = "Name",
-                                hint = "Please enter your name"
+                                label = stringResource(id = R.string.name_label),
+                                hint = stringResource(id = R.string.name_hint)
                             ),
                             HipoFormField(
                                 name = "position",
-                                label = "Position",
-                                hint = "Please enter your position"
+                                label = stringResource(id = R.string.position_label),
+                                hint = stringResource(id = R.string.position_hint)
                             ),
                             HipoFormField(
                                 name = "age",
-                                label = "Age",
-                                hint = "Please enter your age",
+                                label = stringResource(id = R.string.age_label),
+                                hint = stringResource(id = R.string.age_hint),
                                 keyboardOptions = KeyboardOptions(
                                     keyboardType = KeyboardType.Number
                                 )
                             ),
                             HipoFormField(
                                 name = "location",
-                                label = "Location",
-                                hint = "Please enter your location"
+                                label = stringResource(id = R.string.location_label),
+                                hint = stringResource(id = R.string.location_hint)
                             ),
                             HipoFormField(
                                 name = "yearsInHipo",
-                                label = "Number of years in Hipo",
-                                hint = "Please enter how many years you worked at Hipo",
+                                label = stringResource(id = R.string.yearsInHipo_label),
+                                hint = stringResource(id = R.string.yearsInHipo_hint),
                                 keyboardOptions = KeyboardOptions(
                                     keyboardType = KeyboardType.Number
                                 )
                             ),
                             HipoFormField(
                                 name = "github",
-                                label = "Github",
-                                hint = "Please enter your Github username"
+                                label = stringResource(id = R.string.github_label),
+                                hint = stringResource(id = R.string.github_hint)
                             )
                         )
                     )
@@ -154,7 +156,7 @@ fun AddMemberContent(
                         ) {
                             HipoBigButton(
                                 modifier = Modifier.fillMaxWidth(0.9F),
-                                text = "Save",
+                                text = stringResource(id = R.string.save_button),
                                 onClick = onSaveClicked
                             )
                             Spacer(modifier = Modifier.height(5.dp))
