@@ -29,6 +29,10 @@
 - If we assume that network work is fully delegated to the Retrofit library, and local CRUD operations are delegated to the Room library, technically the only real "logic" of the app is the members list filtering, which is strictly a view related logic.
 - There is no real need, given the current specifications, to re-query the database through the domain and data layers, so the search function is just implemented in the UI layer by filtering the full list of elements at each key.
 
+## Testing
+- As mentioned above, there isn't much logic to test in the app, since I assumed that testing the Github APIs, testing Retrofit or Room's methods is out of the scope of the app.
+- I've still tried to include some testing of the UI, using the Jetpack Compose testing libraries, to show that the filtering is working as intended.
+
 ## Finishing notes/assumptions
 - Since this is just a test task, I didn't want to include any functionality that wasn't specifically requested in the document, but I figured I'd add a couple ideas I had about those in here.
 - I would implement a validation check for the add member form. Right now, the user is only suggested to complete the fields in a meaningful way (eg. numeric keyboard for age and years in Hipo) but there's no real check, for example, if the Github username exists. The only thing that is checked is if every field is completed for basic data integrity.
