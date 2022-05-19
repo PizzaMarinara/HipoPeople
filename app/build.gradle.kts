@@ -13,7 +13,7 @@ android {
         targetSdk = Libs.App.targetSdkVersion
         versionCode = ReleaseConfig.appVersionCode
         versionName = ReleaseConfig.appVersionName
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "dev.efantini.hipopeople.CustomTestRunner"
     }
     buildTypes {
         getByName("release") {
@@ -110,6 +110,8 @@ dependencies {
     androidTestImplementation(Libs.AndroidX.Test.Ext.junit)
     testImplementation(Libs.Kotlin.Coroutines.test)
     testImplementation(Libs.JUnit.junit)
+    androidTestImplementation(Libs.Hilt.test)
+    kaptAndroidTest(Libs.Hilt.testCompiler)
 
     // Desugaring
     coreLibraryDesugaring(Libs.Desugaring.desugarJdk)
