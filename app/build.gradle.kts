@@ -104,9 +104,11 @@ dependencies {
 
     // Test
     androidTestImplementation(Libs.AndroidX.Compose.uiTest)
+    debugImplementation(Libs.AndroidX.Compose.uiTestManifest)
     androidTestImplementation(Libs.AndroidX.Test.rules)
     androidTestImplementation(Libs.AndroidX.Test.runner)
     androidTestImplementation(Libs.AndroidX.Test.Ext.junit)
+    testImplementation(Libs.Kotlin.Coroutines.test)
     testImplementation(Libs.JUnit.junit)
 
     // Desugaring
