@@ -24,7 +24,6 @@
 
 ## Presentation layer
 - As I've said, the UI is fully done in Compose, using the navigation component to switch between the screen contents.
-- If we assume that network work is fully delegated to the Retrofit library, and local CRUD operations are delegated to the Room library, technically the only real "logic"
 - Technically, the only real "logic" of the app (if we assume that network work is fully delegated to Retrofit and local CRUD operations are delegated ) is the filtering that is done in the members list screen which is strictly a view related logic (no reason to query the domain and reload the list at each text change).
 - If we assume that network work is fully delegated to the Retrofit library, and local CRUD operations are delegated to the Room library, technically the only real "logic" of the app is the members list filtering, which is strictly a view related logic.
 - There is no real need, given the current specifications, to re-query the database through the domain and data layers, so the search function is just implemented in the UI layer by filtering the full list of elements at each key.
