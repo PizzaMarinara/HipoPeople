@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
 
 @HiltViewModel
 class MembersListViewModel @Inject constructor(
@@ -29,21 +30,27 @@ class MembersListViewModel @Inject constructor(
         getMembersUseCase.execute().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _uiState.value = MembersListState(
-                        loading = false,
-                        members = result.data
-                    )
+                    _uiState.update {
+                        it.copy(
+                            loading = false,
+                            members = result.data
+                        )
+                    }
                 }
                 is Resource.Error -> {
-                    _uiState.value = MembersListState(
-                        loading = false,
-                        error = result.message
-                    )
+                    _uiState.update {
+                        it.copy(
+                            loading = false,
+                            error = result.message
+                        )
+                    }
                 }
                 is Resource.Loading -> {
-                    _uiState.value = MembersListState(
-                        loading = true
-                    )
+                    _uiState.update {
+                        it.copy(
+                            loading = true
+                        )
+                    }
                 }
             }
         }.launchIn(viewModelScope)

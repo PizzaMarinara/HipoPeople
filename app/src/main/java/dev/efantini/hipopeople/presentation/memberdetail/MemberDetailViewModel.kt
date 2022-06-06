@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
 
 @HiltViewModel
 class MemberDetailViewModel @Inject constructor(
@@ -31,21 +32,27 @@ class MemberDetailViewModel @Inject constructor(
         getGithubUserUseCase.execute(username).onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _uiState.value = MemberDetailState(
-                        loading = false,
-                        githubProfile = result.data
-                    )
+                    _uiState.update {
+                        it.copy(
+                            loading = false,
+                            githubProfile = result.data
+                        )
+                    }
                 }
                 is Resource.Error -> {
-                    _uiState.value = MemberDetailState(
-                        loading = false,
-                        error = result.message
-                    )
+                    _uiState.update {
+                        it.copy(
+                            loading = false,
+                            error = result.message
+                        )
+                    }
                 }
                 is Resource.Loading -> {
-                    _uiState.value = MemberDetailState(
-                        loading = true
-                    )
+                    _uiState.update {
+                        it.copy(
+                            loading = true
+                        )
+                    }
                 }
             }
         }.launchIn(viewModelScope)

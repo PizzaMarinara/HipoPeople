@@ -12,6 +12,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 @HiltViewModel
@@ -24,25 +25,40 @@ class AddMemberViewModel @Inject constructor(
 
     fun addMember(formState: HipoFormState) {
 
-        _uiState.value = AddMemberState(loading = true)
+        _uiState.update {
+            it.copy(
+                loading = true
+            )
+        }
         val member = createMemberFromFormState(formState)
         if (member == null) {
-            _uiState.value = AddMemberState(
-                loading = false,
-                formValidationDialogShowing = true
-            )
+            _uiState.update {
+                it.copy(
+                    loading = false,
+                    formValidationDialogShowing = true
+                )
+            }
         } else {
             viewModelScope.launch {
 
                 addMemberUseCase.execute(member)
 
-                _uiState.value = AddMemberState(loading = false, success = true)
+                _uiState.update {
+                    it.copy(
+                        loading = false,
+                        success = true
+                    )
+                }
             }
         }
     }
 
     fun dismissFormValidationDialog() {
-        _uiState.value = uiState.value.copy(formValidationDialogShowing = false)
+        _uiState.update {
+            it.copy(
+                formValidationDialogShowing = false
+            )
+        }
     }
 
     private fun createMemberFromFormState(state: HipoFormState): Member? {
