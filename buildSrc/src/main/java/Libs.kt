@@ -1,12 +1,12 @@
 object Libs {
     const val ktLintVersion = "0.43.2"
-    const val gradlePluginVersion = "7.2.0"
+    const val gradlePluginVersion = "7.2.1"
     const val androidGradlePlugin = "com.android.tools.build:gradle:$gradlePluginVersion"
     const val ktLint = "com.pinterest:ktlint:$ktLintVersion"
 
     object Plugins {
         object Spotless {
-            const val version = "6.6.1"
+            const val version = "6.7.0"
             const val pluginId = "com.diffplug.spotless"
         }
         object GradleVersions {
@@ -21,7 +21,7 @@ object Libs {
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
 
         object Coroutines {
-            private const val version = "1.6.0"
+            private const val version = "1.6.2"
             const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
         }
     }
@@ -44,7 +44,7 @@ object Libs {
         }
 
         object Compose {
-            const val version = "1.2.0-beta01"
+            const val version = "1.2.0-beta03"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val material = "androidx.compose.material:material:$version"
@@ -112,13 +112,13 @@ object Libs {
     }
 
     object Coil {
-        private const val version = "2.0.0"
+        private const val version = "2.1.0"
         const val main = "io.coil-kt:coil:$version"
         const val compose = "io.coil-kt:coil-compose:$version"
     }
 
     object Accompanist {
-        private const val version = "0.24.8-beta"
+        private const val version = "0.24.10-beta"
         const val systemUiController =
             "com.google.accompanist:accompanist-systemuicontroller:$version"
     }
